@@ -31,8 +31,8 @@ class CustomerSuccessBalancing
   def customer_success_with_customers_count
     @available_customer_success.each_with_index.map do |acs, idx|
       minimum_score = minimum_score_for_customer_success(acs, idx)
-      attended_customers = @customers.select { |c| c[:score] <= acs[:score] && c[:score] >= minimum_score }
-      { id: acs[:id], customers_count: attended_customers.length, score: acs[:score] }
+      served_customers = @customers.select { |c| c[:score] <= acs[:score] && c[:score] >= minimum_score }
+      { id: acs[:id], customers_count: served_customers.length, score: acs[:score] }
     end
   end
 
